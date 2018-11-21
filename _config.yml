@@ -1,14 +1,10 @@
-name: Herring Cove
-author: Herring Cove
+name: Team15 3400	
+author: Team 15
 baseurl: /herring-cove
-description: theme for jekyll
-github: http://www.github.com/arnp
-twitter: http://www.twitter.com/
-facebook: http://www.facebook.com
-linkedin: http://www.linkedin.com
-email: rnpatel[at]me.com
-location: 42°2'16"N   70°12'47"W
-disqus: diqus-username
+description: Robot for 3400
+github: http://www.github.com/gururajbhupal/herring-cove
+
+email: gsb85[at]cornell.edu
 
 ##Make sure to edit the above fields, especially for disqus.
 
