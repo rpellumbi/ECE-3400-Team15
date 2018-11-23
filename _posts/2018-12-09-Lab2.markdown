@@ -13,25 +13,25 @@ We used the FFT library for frequency analysis. We see that the FFT library uses
 Amplifier Schematic:
 Pretty quickly, we realized that the we would only be able to recognize both the audio and IR signal from very close distances (less than 3 inches). Since during the competition we would need to identify both sound and IR coming from a farther away than our current abilities, we made two amplifiers to amplify both the audio and IR signals. We used the same amplifier as Team Alpha. Here is the schematic of the amplifier with the microphone:
 
-![AmpSchematic](Media/AmpSchematic.PNG)
+![AmpSchematic]({{ site.baseurl }}/images/L2Media/AmpSchematic.PNG)
 
 The same amplifier was used for the phototransistor except with the phototransistor set up. We used the same circuit as team alpha shown below:
 
-<img src="Media/Phototransistor.png" alt="Phototransistor" width="250"/>
+<img src="{{ site.baseurl }}/images/L2Media/Phototransistor.png" alt="Phototransistor" width="250"/>
 
 Here is a picture of our assembled amplifier where red is Vcc, black is ground, orange is the amplified signal, and green is in the input signal:
 
-<img src="Media/IMG_8591.JPG" alt="Assembled Amplifier" width="250"/>
+<img src="{{ site.baseurl }}/images/L2Media/IMG_8591.JPG" alt="Assembled Amplifier" width="250"/>
 
 Before we used either amplifier with the audio or IR signals, we tested both of them and measured the gain. Inputting a small signal on a signal generator, we were able to have a gain of about 55 for the two amplifiers. Here is an oscilloscope screenshot showing the gain where Channel 2 is the input and Channel 1 is the output of the amplifier:
 
-<img src="Media/Gain.png" alt="Gain" width="500"/>
+<img src="{{ site.baseurl }}/images/L2Media/Gain.png" alt="Gain" width="500"/>
 
 Once we unit tested the amplifiers, we used it to amplify both the audio and IR signals. For example, here are pictures of our signal from the microphone before and after amplification and the phototransistor before and after amplififcation where Channel 2 is the raw signal and Channel 1 is after amplification:
 
-![660Hz Audio with AMP](Media/660HzAudiowithAMP.png)
+![660Hz Audio with AMP]({{ site.baseurl }}/images/L2Media/660HzAudiowithAMP.png)
 
-![6kHz IR with AMP](Media/6kHzIRwithAmp.png)
+![6kHz IR with AMP]({{ site.baseurl }}/images/L2Media/6kHzIRwithAmp.png)
 
 Then we used the Arduino to detect the signals. These graphs confirm that the signals are in the expected bins. From the FFT, in these two graphs, you can clearly see the peaks where the the audio signal in the 5th bin, the IR signal in the 43rd bin:
 
