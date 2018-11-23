@@ -123,10 +123,10 @@ Based on the above observations we need to downsample the data i.e we need to se
 The code that downsamples is below. In two cycles, we selected the most significant bits from each color and assigned them to the appropriate bits in RGB332. Each time PCLK is high, a new byte is being sent so at each rising edge of PCLK, if HREF is high, we read the byte and flip the variable that says which bits of RGB332 we write to the next time we read a byte. 
 
 ```
-Input Byte	7  6  5  4  3  2  1  0  7  6  5	 4  3  2  1  0
-RGB565		R4 R3 R2 R1 R0 G5 G4 G3	G2 G1 G0 B4 B3 B2 B1 B0
-RGB332		R2 R1 R0       G2 G1 G0		 B1 B0			
-Output Byte	7  6  5	       4  3  2		 1  0			
+Input Byte	7    6    5    4    3    2    1    0    7    6    5    4    3    2    1    0
+RGB565		R4   R3   R2   R1   R0   G5   G4   G3	G2   G1   G0   B4   B3   B2   B1   B0
+RGB332		R2   R1   R0             G2   G1   G0		       B1   B0	 		
+Output Byte	7    6    5	         4    3    2		       1    0			
 ```
 
 We also need to re-set color bar registers to get the camera to display the video output.
