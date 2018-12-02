@@ -13,7 +13,7 @@ ECE 3400, Fall 2018, Team #15
 **- Method for setting and following meetings agendas:** The team lead will be in charge of setting and following meeting agendas and uploading it to the shared google folder. The agenda should be set at least a couple hours before the meeting. Other team members are encouraged to add what they think is important to the meeting agendas and to make sure we follow the agenda.  
 **- Method of record keeping:** The team lead will take the necessary notes on the google doc already containing the agenda during the team meetings.    
 
-### Team Expectations 
+### Team Expectations
 **1.Work Quality**  
 **a. Project Standards:** We will hold ourselves to a very high standard so in the case that we do not meet the standard, we will still have a more than acceptable final product.   
 **b. Strategies to fulfill standards:** Since we are asking a lot of ourselves, our work will be challenging. When we need help we will ask for it. When having any issues, we will first ask each other for help, then the TAs and then the professor. Individually, we will be using online resources for help. We will not hesitate to ask for help.    
@@ -33,19 +33,19 @@ ECE 3400, Fall 2018, Team #15
 **a.** We will discuss as a group how we can change the problem and how to move  forward from the issue.  
 **b.** We will seek advice from the professor if we cannot stop the infractions ourselves.  
 
-#### Team Leadership  
+#### Team Leadership
 If you would like to change your team lead tasks, ask in the GroupMe.  
 Week 1-4 (Start-up, Lab 1, Milestone 1): **Rami Pellumbi**  
 Week 5-8 (Lab 2, Lab 3, Milestone 2): **Jackson Kopitz**  
 Week 9-12 (Lab 4, Milestone 3): **Jonathan Cruz**  
 Week 13-16 (Milestone 4, competition, final report): **Gururaj Bhupal**  
 
-#### Acknowledgments 
+#### Acknowledgments
 a)  I participated in formulating the standards, roles, and procedures as stated in this contract.  
 b)  I understand that I am obligated to abide by these terms and conditions.  
 c)  I understand that if I do not abide by these terms and conditions, I will suffer the consequences as stated in this contract.    
 
-#### Signatures 
+#### Signatures
 1.Jonathan Cruz 8/31/18  
 2.Gururaj Bhupal 8/31/18  
 3.Rami Pellumbi 8/31/18  
