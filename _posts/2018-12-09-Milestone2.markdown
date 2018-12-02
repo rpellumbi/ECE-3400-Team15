@@ -25,9 +25,46 @@ Our previous implementation of line follow didn’t really change, but we had to
 * *turn_left_linetracker()*  
 * *turn_right_linetracker()*  
 The functionality can be seen in the specification as well as the code below.  
+
+```
+void turn_right_linetracker() {
+  turn_place_right();
+  delay(300); //delay to get off the line
+  /*Following while loops keep the robot turning until we find the line to the right of us*/
+  while (analogRead(sensor_middle) < line_thresh);
+  while (analogRead(sensor_middle) > line_thresh);
+}
+
+/*Turns to the left until a middle sensor finds a line*/
+void turn_left_linetracker() {
+  turn_place_left();
+  delay(300); //delay to get off the line
+  /*Following while loops keep the robot turning until we find the line to the left of us*/
+  while (analogRead(sensor_middle) < line_thresh);
+  while (analogRead(sensor_middle) > line_thresh);
+}
+```
+
 ![turnLeft]({{ site.baseurl }}/images/M2Media/turn_left_linetracker.PNG) ![turnRight]({{ site.baseurl }}/images/M2Media/turn_right_linetracker.PNG)  
 
+
 where *turn_place_left()* and *turn_place_right()* simply turn the robot in place by having the servos go in opposite directions at the same rate.  
+
+```
+/*Turns to the left in place*/
+void turn_place_left() {
+  servo_left.write(80);
+  servo_right.write(80);
+}
+
+
+/*Turns to the right in place*/
+void turn_place_right() {
+  servo_left.write(100);
+  servo_right.write(100);
+}
+
+```
 ![turnPlaceLeft]({{ site.baseurl }}/images/M2Media/turn_place_left.PNG) ![turnPlaceRight]({{ site.baseurl }}/images/M2Media/turn_place_right.PNG)  
 
 ## Wall Following Algorithm  
@@ -39,12 +76,55 @@ Note: When turning left we turn 180 degrees if there is a wall to the left. THe 
 
 The maze traversal function *maze_traversal()* now follows simply from the block diagram.  
 
+```
+/*Traverses a maze via right hand wall following while line following*/
+void maze_traversal() {
+
+  /*Checks if there is a wall and turns on LED if so - allows us to see what robot is thinking*/
+  check_front();
+  check_right();
+
+
+  /*If we are at an intersection*/
+  if (atIntersection()) {
+
+    /*Check if there is a wall to the right of us*/
+    if (!check_right()) {
+      adjust();
+      turn_right_linetracker();
+    }
+
+    /*If there is no wall to the right of us and no wall in front of us */
+    else if (!check_front()) {
+      adjust(); //adjust here takes us off the intersection allowing us to linefollow
+    }
+
+    /*There IS A WALL to the right of us AND in front of us*/
+    else {
+      adjust();
+      turn_left_linetracker();
+      /*Following if statement allows for robot to turn around at dead end*/
+      if (check_front()) {
+        turn_left_linetracker();
+      }
+    }
+  
+    /*If we are not at an intersection then line follow*/
+    linefollow();
+  }
+```
+
 ![mazeTraversal]({{ site.baseurl }}/images/M2Media/maze_traversal.PNG)  
 
 So that we can see what the robot is thinking, we call *check_front()* and *check_right()* at the beginning of maze traversal which turns an LED on if the robot detects a wall.  
 
 Note: due to the about 3 inch distance from the sensors to the wheels, we implemented the function *adjust()* so that we could pivot 90-degrees at an intersection. Adjust simply has the robot go forward up until the wheels reach the intersection. The delay value is found via manual testing.
-
+```
+void adjust() {
+  go();
+  delay(700); //delay value to reach specification
+}
+```
 ![Adjust]({{ site.baseurl }}/images/M2Media/adjust.PNG)  
 
 A video of our robot traversing a maze with our right-hand wall following algorithm is shown below.
@@ -54,6 +134,59 @@ A video of our robot traversing a maze with our right-hand wall following algori
 ## Avoiding Other Robots  
 To avoid other robots we had to implement our IR code and maze traversal code in one document. This was tricky because the fft library and servo library use the same timer. To get around this we declared a global boolean variable **sees_robot** which is initialized to **false**. We then created the function *IR_detection()* which essentially runs the fft code from lab 2 and set sees_robot to true as well as turns an LED on when a robot is detected. To get around the issue of the fft and servo libraries using the same timers we used temporary values to store the relevant registers at the beginning of the function and restored those registers to their previous value at the end. The function implementation can be seen below.  
 
+
+```
+void IR_detection() {
+
+  /*Set temporary values for relevant registers*/
+  int t1 = TIMSK0; 
+  int t2 = ADCSRA; 
+  int t3 = ADMUX; 
+  int t4 = DIDR0; 
+
+  /*Set register values to required values for IR detection*/
+  TIMSK0 = 0; // turn off timer0 for lower jitter
+  ADCSRA = 0xe5; // set the adc to free running mode
+  ADMUX = 0x40; // use adc0
+  DIDR0 = 0x01; // turn off the digital input for adc0
+
+  cli();  // UDRE interrupt slows this way down on arduino1.0
+  for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
+    while (!(ADCSRA & 0x10)); // wait for adc to be ready
+    ADCSRA = 0xf5; // restart adc
+    byte m = ADCL; // fetch adc data
+    byte j = ADCH;
+    int k = (j << 8) | m; // form into an int
+    k -= 0x0200; // form into a signed int
+    k <<= 6; // form into a 16b signed int
+    fft_input[i] = k; // put real data into even bins
+    fft_input[i + 1] = 0; // set odd bins to 0
+  }
+  fft_window(); // window the data for better frequency response
+  fft_reorder(); // reorder the data before doing the fft
+  fft_run(); // process the data in the fft
+  fft_mag_log(); // take the output of the fft
+  sei();
+  Serial.println("start");
+  for (byte i = 0 ; i < FFT_N / 2 ; i++) {
+    Serial.println(fft_log_out[i]); // send out the data
+    if (i == 43 && fft_log_out[i] > IR_threshold) {
+      digitalWrite(7, HIGH);
+      sees_robot = true;
+    }
+    if (i == 43 && fft_log_out[i] < IR_threshold) {
+      digitalWrite(7, LOW);
+      sees_robot = false;
+    }
+  }
+
+  /*Restore the register values*/
+  TIMSK0 = t1;
+  ADCSRA = t2;
+  ADMUX = t3;
+  DIDR0 =  t4;
+}
+```
 ![IRDetection]({{ site.baseurl }}/images/M2Media/IR_detection.PNG)  
 
 ## Integrating Everything  
@@ -63,9 +196,83 @@ To integrate everything we had to update our function *maze_traversal()* to incl
 
 and the maze traversal code following from the block diagram is 
 
+```
+/*Traverses a maze via right hand wall following while line following*/
+void maze_traversal() {
+
+  /*Checks if there is a wall and turns on LED if so - allows us to see what robot is thinking*/
+  check_front();
+  check_right();
+
+  /*If there is a robot avoid it!!*/
+  if (sees_robot) {
+    /*Turn right until we see a line*/
+    turn_right_linetracker();
+    /*Ensure that the line we pick up isn't gonna run us into a wall*/
+    while (check_front()) {
+      turn_right_linetracker();
+    }
+  }
+  
+  /*If there is NO ROBOT then traverse the maze via right hand wall following*/
+  else {
+    /*If we are at an intersection*/
+    if (atIntersection()) {
+
+      /*Check if there is a wall to the right of us*/
+      if (!check_right()) {
+        adjust();
+        turn_right_linetracker();
+      }
+
+      /*If there is no wall to the right of us and no wall in front of us */
+      else if (!check_front()) {
+        adjust(); //adjust here takes us off the intersection allowing us to linefollow
+      }
+
+      /*There IS A WALL to the right of us AND in front of us*/
+      else {
+        adjust();
+        turn_left_linetracker();
+        /*Following if statement allows for robot to turn around at dead end*/
+        if (check_front()) {
+          turn_left_linetracker();
+        }
+      }
+    }
+    /*If we are not at an intersection then line follow*/
+    linefollow();
+  }
+}
+```
+
+
+
 ![mazeTraversalFinal]({{ site.baseurl }}/images/M2Media/maze_traversal_final.PNG)
 
 Now, our *setup()* code just initializes the servos and indicator LEDS, and our code to run in *loop()* is now just two simple function calls!  
+
+```
+/*Set up necessary stuff*/
+void setup() {
+  Serial.begin(115200); // use the serial port
+  servo_setup(); //setup the servo
+  pinMode(2, OUTPUT); // LED to indicate whether a wall is to the front or not
+  pinMode(3, OUTPUT); // LED to indicate whether a wall is to the right or not
+  pinMode(7, OUTPUT); // LED to indicate whether there is a robot in front of us
+}
+
+
+/*Main code to run*/
+void loop() {
+  IR_detection(); //update sees_robot
+  maze_traversal(); //traverse the maze
+}
+
+```
+
+
+
 ![setup]({{ site.baseurl }}/images/M2Media/setup.PNG)  ![loop]({{ site.baseurl }}/images/M2Media/loop.PNG)  
 
 A demonstration of our robot traversing the maze as well as detecting and avoiding other robots is shown below.
