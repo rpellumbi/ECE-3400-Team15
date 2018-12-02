@@ -4,7 +4,7 @@
 ECE 3400, Fall 2018, Team #15  
 Team Members: Jackson Kopitaz, Gururaj Bhupal, Rami Pellumbi, Jonathan Cruz  
 
-<p align="right">
+
 #### Team Procedures
 **- Team Meetings:** We will meet on Monday at 7:30pm for the week on 9/3 and Sunday at 10am for the rest of the semester in Duffield or Phillips.  
 **- Preferred Method of Communication:** We will use GroupMe to communicate with each other and a shared google folder to share documents when when we are not using github.  
@@ -53,4 +53,3 @@ c)  I understand that if I do not abide by these terms and conditions, I will su
 2.Gururaj Bhupal 8/31/18  
 3.Rami Pellumbi 8/31/18  
 4.Jackson Kopitz 8/31/18   
-</p>
