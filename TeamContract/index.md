@@ -1,6 +1,6 @@
 
 
-## Team Contract
+# Team Contract
 ECE 3400, Fall 2018, Team #15
 
 #### Team Members: Jackson Kopitaz, Gururaj Bhupal, Rami Pellumbi, Jonathan Cruz
