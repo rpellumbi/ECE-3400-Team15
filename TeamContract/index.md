@@ -1,19 +1,18 @@
 
 
 # Team Contract
-ECE 3400, Fall 2018, Team #15 
+ECE 3400, Fall 2018, Team #15  
+Team Members: Jackson Kopitaz, Gururaj Bhupal, Rami Pellumbi, Jonathan Cruz  
 
-#### Team Members: Jackson Kopitaz, Gururaj Bhupal, Rami Pellumbi, Jonathan Cruz  
 
-
-### Team Procedures 
+#### Team Procedures 
 **- Team Meetings:** We will meet on Monday at 7:30pm for the week on 9/3 and Sunday at 10am for the rest of the semester in Duffield or Phillips.  
 **- Preferred Method of Communication:** We will use GroupMe to communicate with each other and a shared google folder to share documents when when we are not using github.  
 **- Decision-Making Policy:** When decisions need to be made by everyone on the team, we will go with the general consensus. In the event our team is split two against two, the team lead for that section of the semester will make the decision.  
 **- Method for setting and following meetings agendas:** The team lead will be in charge of setting and following meeting agendas and uploading it to the shared google folder. The agenda should be set at least a couple hours before the meeting. Other team members are encouraged to add what they think is important to the meeting agendas and to make sure we follow the agenda.  
 **- Method of record keeping:** The team lead will take the necessary notes on the google doc already containing the agenda during the team meetings.    
 
-### Team Expectations
+#### Team Expectations
 **1.Work Quality**  
 **a. Project Standards:** We will hold ourselves to a very high standard so in the case that we do not meet the standard, we will still have a more than acceptable final product.   
 **b. Strategies to fulfill standards:** Since we are asking a lot of ourselves, our work will be challenging. When we need help we will ask for it. When having any issues, we will first ask each other for help, then the TAs and then the professor. Individually, we will be using online resources for help. We will not hesitate to ask for help.    
