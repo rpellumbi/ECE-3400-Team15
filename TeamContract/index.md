@@ -7,9 +7,9 @@ ECE 3400, Fall 2018, Team #15
 
 
 ### Team Procedures 
-**-Team Meetings:** We will meet on Monday at 7:30pm for the week on 9/3 and Sunday at 10am for the rest of the semester in Duffield or Phillips.  
-** -Preferred Method of Communication:** We will use GroupMe to communicate with each other and a shared google folder to share documents when when we are not using github.  
-** -Decision-Making Policy:** When decisions need to be made by everyone on the team, we will go with the general consensus. In the event our team is split two against two, the team lead for that section of the semester will make the decision.  
+**- Team Meetings:** We will meet on Monday at 7:30pm for the week on 9/3 and Sunday at 10am for the rest of the semester in Duffield or Phillips.  
+**- Preferred Method of Communication:** We will use GroupMe to communicate with each other and a shared google folder to share documents when when we are not using github.  
+**- Decision-Making Policy:** When decisions need to be made by everyone on the team, we will go with the general consensus. In the event our team is split two against two, the team lead for that section of the semester will make the decision.  
 **- Method for setting and following meetings agendas:** The team lead will be in charge of setting and following meeting agendas and uploading it to the shared google folder. The agenda should be set at least a couple hours before the meeting. Other team members are encouraged to add what they think is important to the meeting agendas and to make sure we follow the agenda.  
 **- Method of record keeping:** The team lead will take the necessary notes on the google doc already containing the agenda during the team meetings.    
 
@@ -35,7 +35,9 @@ ECE 3400, Fall 2018, Team #15
 
 **Team Leadership**  
 If you would like to change your team lead tasks, ask in the GroupMe.  
-Week 1-4 (Start-up, Lab 1, Milestone 1): **Rami Pellumbi**   Week 5-8 (Lab 2, Lab 3, Milestone 2): **Jackson Kopitz**   Week 9-12 (Lab 4, Milestone 3): **Jonathan Cruz**  
+Week 1-4 (Start-up, Lab 1, Milestone 1): **Rami Pellumbi**  
+Week 5-8 (Lab 2, Lab 3, Milestone 2): **Jackson Kopitz**  
+Week 9-12 (Lab 4, Milestone 3): **Jonathan Cruz**  
 Week 13-16 (Milestone 4, competition, final report): **Gururaj Bhupal**  
 
 **Acknowledgments**  
