@@ -4,8 +4,6 @@ date: 2018-12-09 19:55:16
 categories: milestones
 ---
 
-# Milestone 3 Report
-
 ## Introduction
 For this milestone we modified our robots traversal algorithm. Now, instead of exploring a maze via right hand wall following we explore it via a modified depth first search while updating the GUI.
 Our algorithm is very similar to a depth first search, but instead of directly backtracking once we have no more unexplored nodes around us we plan a path to the nearest unexplored node (via nodes we have already visited) and then traverse that path. Often times this leads to directly backtracking, but there are a lot of scenarios where it actually makes maze exploration a lot faster!
