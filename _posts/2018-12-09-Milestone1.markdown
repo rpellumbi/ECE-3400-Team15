@@ -11,7 +11,7 @@ To aid the robot in navigating the grid, we used 3 line sensors. Due to shadows 
 ```
 int sensor_middle = A3; 
 int sensor_left = A4;
-Int sensor_right = A5;
+int sensor_right = A5;
 
 void setup() {
   Serial.begin(9600);
@@ -48,7 +48,7 @@ if (analogRead(sensor_right) < 850) {
 if (analogRead(sensor_right) > 500 && analogRead(sensor_left) > 500 && analogRead(sensor_middle) > 850{
  halt();
 }
-
+```
 
 ![FollowLineCode]({{ site.baseurl }}/images/M1Media/FollowLineCode.png)
 
