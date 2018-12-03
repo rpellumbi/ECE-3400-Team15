@@ -1,6 +1,6 @@
 ---
 title: Lab3
-date: 2018-12-09 19:55:16
+date: 2016-12-09 19:55:16
 categories: labs
 ---
 
