@@ -1,5 +1,5 @@
 ---
-title: Lab1
+title: Lab1 - Introduction
 date: 2018-12-09 19:55:16
 categories: labs
 ---
