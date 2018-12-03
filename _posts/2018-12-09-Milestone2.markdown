@@ -1,5 +1,5 @@
 ---
-title: Milestone2
+title: Milestone2 - Wall following 
 date: 2017-12-09 19:55:16
 categories: milestones
 ---
