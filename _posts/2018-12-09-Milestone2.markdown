@@ -128,7 +128,7 @@ void adjust() {
 
 A video of our robot traversing a maze with our right-hand wall following algorithm is shown below.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Jq2T61r8EME" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/d7TXmn71tQ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Avoiding Other Robots  
 To avoid other robots we had to implement our IR code and maze traversal code in one document. This was tricky because the fft library and servo library use the same timer. To get around this we declared a global boolean variable **sees_robot** which is initialized to **false**. We then created the function *IR_detection()* which essentially runs the fft code from lab 2 and set sees_robot to true as well as turns an LED on when a robot is detected. To get around the issue of the fft and servo libraries using the same timers we used temporary values to store the relevant registers at the beginning of the function and restored those registers to their previous value at the end. The function implementation can be seen below.  
@@ -271,7 +271,7 @@ void loop() {
 
 A demonstration of our robot traversing the maze as well as detecting and avoiding other robots is shown below.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/h-wGLCHZvRA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HFYFnrz0DfM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Going Forward  
 As we move onto other labs we will likely need to implement a more efficient way to traverse the maze by keeping track of squares we have already visited. We will also likely change the way we avoid robots but turning around seems fine for now.

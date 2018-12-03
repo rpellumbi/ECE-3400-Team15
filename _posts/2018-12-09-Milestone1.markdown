@@ -71,7 +71,7 @@ void turn_right() {
 ```
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6EOPY7VUni4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JqHFbGctT4A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Traversing Grid in a Figure 8
 
@@ -119,4 +119,4 @@ void turn_right_90() {
 
 Once the robot finishes executing a 90 degree turn, it resume running the line following code until it reaches another junction. Here is a video of our robot successfully traversing 2 figure 8s on the grid.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/swSXyXTXP5s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ifGCA0HRTxA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
