@@ -15,7 +15,23 @@ Utilizing the [Arduino IDE](https://www.arduino.cc/en/Main/Software), we were ab
 
 ### Blinking the LEDs
  
-![Blink Internal LED Code]({{ site.baseurl }}/images/L1Media/internalLED.PNG)
+```
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(1000);                       // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  delay(1000);                       // wait for a second
+}
+```
+
+
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8ArTX7KYVD8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -23,7 +39,25 @@ We then moved on to blinking an external LED, so we connected an LED to the Uno 
 
 This is the code we used to blink the external LED, starting with the same base Blink sketch but changing the output pin from LED_BUILTIN to pin 0. Writing HIGH or LOW to pin 0 directed the LED to turn on and off, respectively.
 
-![Blink External LED Code]({{ site.baseurl }}/images/L1Media/externalLED.PNG)
+```
+int pin_out = 0;         // pin_out can be set to all digital pins 
+
+void setup() {
+  // initialize the digital pin, pin_out as an output:
+  pinMode(ledPin, OUTPUT);
+
+}
+
+void loop() {
+  // read the state of the pushbutton value:
+ 
+    digitalWrite(pin_out, HIGH); //turn LED on
+    delay(1000);                 //delay 
+    digitalWrite(pin_out, LOW);  //tun LED off
+    delay(1000);                 //delay
+  
+}
+```
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lo2UhQs6UsQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -35,6 +69,24 @@ Now we want to read an analog value from a potentiometer hooked up to one of the
 
 The code we used to read from the potentiometer first declared pin A0 as an input and used the Serial.begin() function to set a bit rate in order to send serial data. We then set up a loop in which the analogRead() and Serial.println() functions read the incoming serial data and print it to the serial monitor. Since we want to sample every 0.5 seconds, there is an added delay() of 500 ms in the loop.
 
+```
+int PINNAME = 0;         // PINNAME can be set to all analog in pins 
+
+void setup() {
+  // initialize the digital pin, pin_out as an output:
+  pinMode(PINAME, INPUT);
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  Serial.println(analogRead(PINNAME)); //analog read
+    delay(500);                        //delay 
+
+}
+```
+
+
 ![Printing Serial Data Code]({{ site.baseurl }}/images/L1Media/potRead.PNG)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7JXkB8mXXx0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -43,7 +95,24 @@ The code we used to read from the potentiometer first declared pin A0 as an inpu
 
 The range of values read from the potentiometer [0, 1024] is four times the range of values able to be written to the LED [0, 255]. In order to be fed to the LED output pin, the serial data read from the potentiometer is divided by four.
 
-![Potentiometer-controlled LED Code]({{ site.baseurl }}/images/L1Media/analogLED.PNG)
+```
+int POUT = 3;         // POUT can be set to any pin with a tilda (~) next to it 
+int PIN = A1;         //PIN can be set to all analog pins
+
+void setup() {
+  // initialize POUT output
+  pinMode(POUT, OUTPUT);
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  analogWrite(POUT, analogRead(PIN)/4); //analog write
+//the '/4' ensures that ranges for analogRead and analogWrite be same.
+    delay(250);                        //delay 
+
+}
+```
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rfy2OAFVIig" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -51,7 +120,26 @@ The range of values read from the potentiometer [0, 1024] is four times the rang
 
 In order to scale the potentiometer range [0, 1024] to the servo range [0, 180], we multiplied the input by 180/1024.
 
-![Potentiometer-controlled LED Code]({{ site.baseurl }}/images/L1Media/ServoandPotentiometerCode.png)
+```
+#include <Servo.h>
+
+int PIN = A1;         // POUT can be set to any pin with a tilda (~) next to it 
+int POUT = 9;         //PIN can be set to all analog pins
+
+void setup() {
+  
+  pinMode(POUT, OUTPUT);
+  Serial.begin(9600);
+  servo.attach(9);
+  servo.write(90);
+
+}
+
+void loop() {
+  Servo.write(POUT, analogRead(PIN)*180/1024);
+
+}
+```
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Mvg55Toar-s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -63,7 +151,33 @@ The design of our robot was very simplistic. It had a flat top as its body where
 
 Movement around a square can be broken down into two components: moving forward and turning 90 degrees. To direct the bot to move forward, the right servo rotates clockwise and the left servo rotates counterclockwise. To complete a 90 degree turn, both servos are set to rotate clockwise so that the right wheel moves forward and the left wheel moves backwards, turning to the left. Through testing we found that a 90 degree turn took about 0.72 seconds so a delay of 720 ms was added. The size of the square path is set by the duration that the robot is directed to move forwards, in this case two seconds.
 
-![Square Movement Code](Media/movementCode.PNG)
+```
+#include <Servo.h>
+
+Servo servo_left;
+Servo servo_right;         
+
+void setup() {
+
+  servo_right.attach(9);
+  servo_left.attach(10);
+  servo_right.write(90);
+  servo_left.write(90);
+
+
+}
+
+void loop() {//loops over a 90 degree turn and a a forward movement
+  
+  servo_right.write(180);
+  servo_left.write(180);
+  delay(720);//turns robot 90 degrees
+  servo_right.write(180);
+  servo_left.write(0);
+  delay(2000); //continues straight for 2 seconds
+
+}
+```
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cwXXq-iTddo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
