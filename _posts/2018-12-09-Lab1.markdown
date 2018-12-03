@@ -87,8 +87,6 @@ void loop() {
 ```
 
 
-![Printing Serial Data Code]({{ site.baseurl }}/images/L1Media/potRead.PNG)
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7JXkB8mXXx0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### Mapping Values from Potentiometer to LED
