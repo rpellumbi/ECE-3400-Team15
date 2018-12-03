@@ -1,5 +1,5 @@
 ---
-title: Lab2 - Actuators and Control
+title: Lab 2 - Actuators and Control
 date: 2017-12-09 19:55:16
 categories: labs
 ---

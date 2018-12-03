@@ -1,5 +1,5 @@
 ---
-title: Milestone4 - Object Detection
+title: Milestone 4 - Object Detection
 date: 2015-12-09 19:55:16
 categories: milestones
 ---

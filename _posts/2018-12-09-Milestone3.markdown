@@ -1,5 +1,5 @@
 ---
-title: Milestone3 - Maze Traversal
+title: Milestone 3 - Maze Traversal
 date: 2016-12-09 19:55:16
 categories: milestones
 ---

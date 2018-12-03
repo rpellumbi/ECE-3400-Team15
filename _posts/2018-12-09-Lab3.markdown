@@ -1,5 +1,5 @@
 ---
-title: Lab3 - RF Communication
+title: Lab 3 - RF Communication
 date: 2016-12-09 19:55:16
 categories: labs
 ---
