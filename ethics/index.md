@@ -16,7 +16,7 @@ The realm of Robotics and Automation was introduced to ease the work of a human 
 Autonomous systems perform under a certain set of rules which are programmed into it. A lot of people argue that humans also work in the same way but they are at acting on exceptions that occur, that makes human a human and robot a robot. 
 <br>
 Yes, “a ban on offensive autonomous weapons beyond meaningful human control” will work if it is regulated by a well-defined set of global laws. 
-Let's consider Pros and Cons of having Autonomous Weapons. 
+Let's consider Pros and Cons of having Autonomous Weapons.  
 <br> 
 **Pro**  
 If you are a country using Autonomous Weapons then you will face lesser human loss in defense since you can involve less of humans for the warfare.  
