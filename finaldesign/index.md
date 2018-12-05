@@ -1,5 +1,11 @@
 # Final Robot
 
+The Final Robot design had the below main feature
+- Radio Communication : For transmitting maze data to base station 
+- Overall Design Aesthetics : For better Stability
+- Frequency analysis : For audio and collision avoidance 
+- Modified DFT with path planning : for maze traversal.
+
 ## Radio Communication 
 
 In order to get the Arduinos to communicate wirelessly using the RF chips, we studied and experimented with the GettingStarted.ino file given in Lab 3 to find out which parts were necessary to transmit and receive information and which parts were extraneous to our objective for the competition. The configuration settings in our code were drawn heavily from the given configuration settings, with the only changes being an increased power (max) and data rate (2MBPS) and a decreased payload size for more reliability (8 bytes). Since the robot was always sending information and the base station was always receiving it, we found the role switching capabilities of the original code to be unnecessary. Both pipes for reading and writing were set from the beginning and we found no need for the base station to send information for the robot to receive beyond an acknowledgment of a successfully received message. As a result, the final RF code used for this lab was significantly cut down in length while still remaining functional.
