@@ -1,12 +1,10 @@
-Jackson Kopitz  
-Rami Pellumbi  
-Jonathan Cruz  
-Gururaj Bhupal  
-November 30, 2018  
-ECE 3400  
-				Ethics Assignment  
 
-Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?
+
+## Ethics Assignment 
+#### Jackson Kopitz, Rami Pellumbi, Jonathan Cruz, Gururaj Bhupal  
+ 
+
+*Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?*
 
 <img src="{{ site.baseurl }}/images/ethic_1.png" alt="Circuit Setup" width="500"/>
 
@@ -18,9 +16,9 @@ Autonomous systems perform under a certain set of rules which are programmed int
 
 Yes, “a ban on offensive autonomous weapons beyond meaningful human control” will work if it is regulated by a well-defined set of global laws. 
 Let's consider Pros and Cons of having Autonomous Weapons. 
-Pros : 
+*Pro*  
 If you are a country using Autonomous Weapons then you will face lesser human loss in defense since you can involve less of humans for the warfare.
-Cons : 
+*Con* 
 If you are the country on which an Autonomous Weapon is fired, they can face (i) a huge army loss (ii) a whole country or a huge part of the country can be sabotaged. 
 
 Based on the Pros and Cons, we see that the scale of destruction that the ‘con’ causes are really huge over the advantage the ‘pro’ gives.
@@ -30,7 +28,7 @@ Implementing this thing is practice is really difficult since it needs to be dea
 
 This system will not inhibit any development and research in IPS since regulations are only applied on defense systems, while IPS is used in many other scenarios than just defense. 
 
-We finally believe that “a ban on offensive autonomous weapons beyond meaningful human control” is necessary. Ending the discussion with a funny cartoon. Hail robotics!
+We finally believe that *“a ban on offensive autonomous weapons beyond meaningful human control”* is necessary. Ending the discussion with a funny cartoon. Hail robotics!
 
 
 <img src="{{ site.baseurl }}/images/ethic_2.png" alt="Circuit Setup" width="500"/>
