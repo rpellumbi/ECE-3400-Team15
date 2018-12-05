@@ -1,10 +1,10 @@
 
 
-## Ethics Assignment 
+-> ## Ethics Assignment <-
 #### Jackson Kopitz, Rami Pellumbi, Jonathan Cruz, Gururaj Bhupal  
  
 
-*Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?*
+-> **Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?** <-
 
 <img src="{{ site.baseurl }}/images/ethic_1.png" alt="Circuit Setup" width="500"/>
 
@@ -28,7 +28,7 @@ Implementing this thing is practice is really difficult since it needs to be dea
 
 This system will not inhibit any development and research in IPS since regulations are only applied on defense systems, while IPS is used in many other scenarios than just defense. 
 
-We finally believe that *“a ban on offensive autonomous weapons beyond meaningful human control”* is necessary. Ending the discussion with a funny cartoon. Hail robotics!
+We finally believe that **“a ban on offensive autonomous weapons beyond meaningful human control”** is necessary. Ending the discussion with a funny cartoon. Hail robotics!
 
 
 <img src="{{ site.baseurl }}/images/ethic_2.png" alt="Circuit Setup" width="500"/>

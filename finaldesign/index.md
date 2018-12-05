@@ -77,3 +77,81 @@ Since we wanted to analyze signals from two sources, we had to switch which bin 
 Here is a picture of the phototransistor and amplifier circuit. This circuit was placed on the top of the robot. The orange wire is the amplified output signal sent to the mux.
 
 
+Our overall traversal algorithm changed from the implementation in Milestone 3. In milestone 3 we favored a depth first search approach until we hit a coordinate where we were surrounded by all visited coordinates. We still do DFS until we need to backtrack but instead of true backtracking we plan a path to the “nearest” way possible. We also had to implement robot avoidance.
+
+The algorithm from milestone 3 was
+MODIFIED DFS ALGORITHM
+
+If at an intersection
+	If this is the first time running the algorithm
+		First_run = false
+		Set {0,0} to explored
+	Else
+		Update position
+	Update the GUI
+	Push the surrounding unvisited valid coordinates to the stack (valid = in bounds and no wall in between)
+	If the stack is not empty
+		V = popping the first element of the stack 
+		If V has NOT been explored
+			If V is the front coordinate
+				Go forward
+			Else if V is the left coordinate
+				Turn left
+			Else if V is the right coordinate
+				Turn right
+			Else V is a coordinate not immediately surrounding us
+				Plan a path to V
+				Traverse that path
+			Set V to explored
+Else if not at an intersection
+	If every node has not been explored
+		Line follow
+	Else If every node has been explored
+		Celebrate 
+
+
+We spent a lot of time figuring out how to path plan back to the “nearest” unexplored node. We say nearest because our robot didn’t traverse the true shortest path back, but instead we traversed the shortest path via prioritizing certain movements. 
+
+While path planning we prioritize moving forward first, then left, then right (directions relative to the way the robot is facing). The algorithm first checks if v is in front of, to the right of, or to the left of the robot. If the robot can legally move in the direction of v, it will. Otherwise, the robot checks for any legal exits in the same order of priority, forward, left, and then right. If there are still no legal exits, the robot turns around.
+
+We realized that path planning this way sometimes yielded a path that wasn’t traversable since the robot would plan a path where it just went in a circle. This was due to us prioritizing movements in the order of front then left then right. When this happened the Queue that we used would consume too much memory and the robot would come to a complete halt. So we made the path planning with front, left, right prioritization return false if the queue was loaded with more than 20 values. If this happens we just plan a path with front, right, left prioritization and traverse that instead.
+
+Note: the robot was designed to start in front of the {0,0} intersection since it was easier to insert in the maze that way.
+
+The algorithm we settled on for the final competition now looked as follows.
+
+PATH PLANNING ALGORITHM 
+GURU MAKE SURE THIS AND THE ABOVE FORMATS RIGHT LIKE THE LAST ONE
+
+If at an intersection
+	If it’s the first run
+		Set {0,0} to explored
+Update position
+Scan and update wall information
+Update the GUI
+If there is a robot
+	Replan a path with robot in mind
+	Push the surrounding unvisited valid coordinates to the stack
+	If the stack is not empty
+		V = popping the first element of the stack 
+		While (V is explored)
+			Keep popping V 
+		If V has NOT been explored
+			If the planned path to V via flr is valid
+				Plan a path to V
+			Else
+				Plan a path to V via frl prioritization
+			Traverse the path to V
+		Mark V as explored
+Else if not at an intersection
+	If there's a robot
+		Freak out until they move
+	Else If every node has not been explored
+		Line follow
+	Else If every node has been explored
+		Celebrate 
+
+The path planning algorithm was modified slightly so that we could just use path planning instead of all those conditionals you see in the milestone three algorithm  above. 
+When this worked, IT WORKED. We could regularly traverse a whole 9x9 with little misinformation on the GUI. Then we decided to remodel our robot the night before and pretty much set ourselves up for failure. We highly recommend you take a look at the Final_Competition_Final code. It is well commented and an elegant implementation of the maze traversal.
+
+
