@@ -1,80 +1,79 @@
----
-title: Milestone4
-date: 2018-12-09 19:55:16
-categories: milestones
----
+# Final Robot
 
-## Introduction
-For this milestone, we added shape detection to our camera. There are  6 types of treasures that have to be detected in the competition.
+## Radio Communication 
 
+In order to get the Arduinos to communicate wirelessly using the RF chips, we studied and experimented with the GettingStarted.ino file given in Lab 3 to find out which parts were necessary to transmit and receive information and which parts were extraneous to our objective for the competition. The configuration settings in our code were drawn heavily from the given configuration settings, with the only changes being an increased power (max) and data rate (2MBPS) and a decreased payload size for more reliability (8 bytes). Since the robot was always sending information and the base station was always receiving it, we found the role switching capabilities of the original code to be unnecessary. Both pipes for reading and writing were set from the beginning and we found no need for the base station to send information for the robot to receive beyond an acknowledgment of a successfully received message. As a result, the final RF code used for this lab was significantly cut down in length while still remaining functional.
+The protocol for communication between the base and robot was based on a two byte integer named data on the robot that is updated, sent to the base, and then cleared at every intersection. Whenever the robot hits an intersection, based on its current heading, it updates its position and scans the walls around it. The appropriate bits are set in data and then data is sent to the base. We also update and send data after seeing a robot. After it is sent, data is reset to 0x0000 to ensure information for future transmissions does not contain pieces of previous transmissions.
+The encoding for data is as follows:
+Nibble 1 
+[0:3] - Robot x co-ordinate (Range is 0-8 since its a 9*9 matrix) 
 
-## Implementation 
-The 6 treasure types that need to be detected are as below. 
-Blue Triangle 
-Blue Square 
-Blue Diamond 
-Red Triangle 
-Red Square 
+Nibble 2 
+[4:7] - Robot y co-ordinate (Range is 0-8 since its a 9*9 matrix) 
 
-Based on this we have to compute several parameters . 
+Nibble 3
+[8] - West Wall ( 0 - no wall ; 1 - wall exists ) 
+[9] - North Wall ( 0 - no wall ; 1 - wall exists ) 
+[10] - East Wall ( 0 - no wall ; 1 - wall exists ) 
+[11] - South Wall ( 0 - no wall ; 1 - wall exists )
 
-Presence of the  treasure 
-Color of the treasure 
-Shape of the treasure
-
-Shape detection is one of the toughest challenges we had to face in among all the milestones. 
-Majorly because of below reasons.
-Irregularities in camera - due to excessive shaking or lose connections. 
-	We realized that shape detection is more sensitive than color detection, so holding the camera in the hand caused  a lot of variation due to small disturbances.This made us realize that we need to do all experimentation on a stable platform, so we fixed a position for the camera. 
-
-<img src="{{ site.baseurl }}/images/M4Media/setup.png" alt="Setup" width="500"/>
- 
-Irregularity in treasure - due to variations in position, color, and folds on paper
- All teams used different cut pieces of paper for shape detection. We faced a lot of issues due to these irregular pieces of paper because of which the relative positions used to vary. Based on the algorithm we used, we need the shapes to be relatively almost in the same position. So we used thicker and standardized shapes as below. 
-
-<img src="{{ site.baseurl }}/images/M4Media/shapes.jpg" alt="Shapes" width="500"/>
-
-The above standardizations helped a lot in obtaining the output. 
-
-To identify the treasure we hooked up 5 LEDs 
-2 LEDs - Color of Treasure 
-3 LEDs - Shape of the Treasure
-
-We maintained the same color detection scheme. 
-For shape detection, on observation of the treasures, we saw that the treasures had differential lengths on a fixed line in the frame. We used this property and sampled 3 fixed lines on the frame and compared the lengths of this points. 
-
-
-As shown in the figure above, we compared lengths of La, Lb and Lc. 
-Based on the below relations we come to a conclusion of the shape. 
-
-<img src="{{ site.baseurl }}/images/M4Media/algo.png" alt="Algorithm" width="500"/>
-
-A huge amount of time is required to calibrate to choose exact La, Lb, and Lc. 
-We have a frame which is 147px in height , so we initially started with positions with La = 36, Lb = 72 and Lc = 108, but we realized this is suitable for an ideal situation, but for a more practical case( both shown below ), after a lot of iterations of fine tuning, we obtained the,
- actual La = 57  actual Lb = 82  actual Lc = 109
-
-
-After this, we pass 3 outputs to Arduino and sample it for 3.5s. Based on the average collected Arduino, we decide the shape and the color which are output from the Arduino using 5 LEDs.
-For stability we hold this output till the next output, this gives stable signals too. 
-
-Below is the video of shape and color detection.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HeEwGeix-AQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-Left LEDs - Red LED - Red treasure 
-	        Green LED - Blue treasure 
-
-Right LEDs - Green - Triangle 
-	           Yellow - Diamond 
-		Red - Square
-So below combinations give the output. 
+Nibble 4
+[12-14] - Treasure Type  ( Predetermined treasure type codes as below) 
+No Treasure = 0;
+Blue Triangle = 1; 	Blue Square = 2;	 Blue Diamond = 3;
+Red Triangle = 4; 	Red Square = 5; 	 Red Diamond = 6;
+[15] - Opponent Robot ( 0 - no Robot exists ; 1 - Robot obstructing path ) 
 
 
 
-## Conclusion
-To maintain the same static scanning, we need to be at an exact fixed distance from the treasure. So for the final competition, we have decided to scan it at the intersection where the treasures are almost at the same distance, since walls are almost same distance to intersection. 
-Further tuning needs to be done to find the new parameters La, Lb and Lc for the competition. 
+Once the robot sends the base station a message with all of the information encoded in the format described above, the base station decodes the message with the use of masking and bit shifting in order to extract information from specific bits. The base station iterates over the bits of the message and prints (without newlines) the information contained within them. For example, if our robot detects another robot, bit 15 will be set to 1 and the base station will print “,robot=true”. Once the message has been fully parsed and interpreted, it prints a new line so that the GUI will receive the information and update accordingly.
+## Printed Circuit Board 
+
+As encouraged by the course staff, we decided to make a printed circuit board (PCB) to both clean up our wiring for our final robot and to remove the problem of wires falling out that is inherent when using a breadboard. The idea for the PCB is that the PCB would sit like a 'hat' on the Arduino and have headers for all sensors and other inputs. We used EAGLE PCB Design Software to design the PCB. 
+
+The first step in this process was creating the schematic. This involved downloading all the parts we are using from online libraries and wiring everything as we have on the breadboards. I downloaded a library for the multiplexor and for the Arduino to ensure the dimensions of the pinouts and spaces were all correct. Here is a picture of the schematic.
+
+![schematic image](Media/schematic.png)
+
+The next part of the process was to use the schematic to layout the board. First I placed all components on the board. When placing the components on the board, all pins on each component have straight 'air wires' that show which pins on other components the given pin needs to be wired to. So, when placing the components, it is most ideal to have as few 'air wires' crossing each other as to make wiring the components easier later.
+
+We chose to have a 2-layer board. The bottom layer is ground. This simplifies the wiring because it allows all pins that need to be grounded to be shorted to the bottom layer instead of all being wired together. After creating the ground layer, we started connecting the wiring on the top layer. After choosing a trace width of about 0.6 mm as determined by the max voltage of 5V, with as straight wires as possible, we wired all components together. Because some wires cross, some wires need to go through a via to the bottom layer to go under the wires they intersect with when being routed. Here is a picture of the schematic. Red wires are through the top layer and blue wires are through the bottom layer.
+
+![board image](Media/board.png)
+
+The PCB ultimately failed because of the PCB mill we used to print it. We were not able to level the board properly so each time we milled the board, some parts of the board were cut to deep so there was no path for signal, and in some place its was not cut deep enough and the copper was not broken through and thus the signal was shorted with the whole level. We tried for a long time to level the board but we eventually gave up. We realized that even if we finally printed the first side correctly by luck, we would also have to print the second side perfectly. Since we would not be so lucky twice in a row, we decided to give up on the PCB and put our circuitry on protoboards.
+
+Below is a picture of a failed protoboard. On the top left of the board, you can see that the mill did not cut through the copper so that trace would be shorted with the rest of the layer. At the same time, on the right side, the mill cut so deep  that there is no copper left to transport the signal. This issue was caused by the uneven base of the mill. This caused us to put our circuit on a protoboard instead of using the PCB.
+
+![board image](Media/printedboard.jpg)
 
 
+## Proto Boarding
+
+Once we realized that the printed circuit board would not work, we decided to move all our circuitry to protoboards. We moved the amplifiers, multiplexer, headers, LEDs, and microphone to small protoboards cut to the needed size as to be as small as possible. We used protoboards that had rows of holes connected by small copper pieces that imitate a breadboard to clean up the soldering work. Most boards connected to a head on the arduino. Three boards were on top of the robot, one with the push button, one with the microphone and its amplifier, and one for the IR sensor. 
+
+Here is an example of a protoboard we used for digital pins 0 through 7. 
+
+![D0-D7 board](Media/D07board.jpg)
+
+On the top right you can see the 8 pins that connect right into the arduino. 3 of the pins are used as select bits for the mux (the long central chip). Two of the top pins are used as PWM ports to control the servos, and the servos plug into the headers on the top left. The bottom blue wire is the audio input to the amplifier and the grey wires are both the output of the amplifier (one is unsoldered so it can be used for testing on an oscope). On the left, you can see three headers that are the wall sensors. All three wall sensors are inputs to the mux. Finally, on the right, there are two single pin headers, one is the output of the mux, and one is where the IR signal is an input to the mux.
+
+The rest of the protoboards were very similar but with the required pins for the given arduino headers and inputs. There were additional protoboards made for the push button, microphone, IR sensor and amplifier, arduino analog pins 0 through 5, and radio module.
+
+## FFT
+
+On our final robot, we had a microphone to detect 660 Hz audio signal to tell the robot to start, and a phototransistor IR sensor to detect other robots emitting IR at 6.08kHz. We processed the signals using the Arduino FFT Library. Also, we made 2 amplifiers to clearly detect the signals from a farther distance. 
+
+To process our signals, we used the arduino FFT library. We used the free running mode and the example code from fft_adc_serial. We first had to determine which bins we expect our signal to be in. We chose a sampling frequency of 38kHz and sampled 256 times. Thus, 38kHz / 256 samples = 148.4 Hz per bin in our FFT. From here, we were able to determine that the 660 Hz audio signal would be in the 5th bin and the 6.08 kHz IR signal would be in the 43 bin. After experimenting to see where the signals did fall, we confirmed our calculations were correct.
+
+Since during the competition we would need to identify both audio and IR coming from about a foot away, we added two amplifiers to amplify both the audio and IR signals. Here is the schematic of the amplifier with the microphone:
+
+
+The same amplifier was used for the phototransistor. Below is the phototransistor circuit with Vout being the input to the amplifier.
+
+
+Since we wanted to analyze signals from two sources, we had to switch which bin we were reading data from on the arduino each time we ran the FFT. Both the audio and IR came from the mux output, so we needed to select the bin to read from. If we were in the initial spinlock, a global variable was set to read from the audio bin. Once we left this spinlock, the global variable indicated to read from the IR bin since after the initial tone, the robot never needs to listen to the audio signal. To determine if we are receiving an audio or IR signal, we checked which pin we were reading from, then the corresponding bin for that signal, and if the value was above the threshold, then we were receiving a signal. Similarly, if the value was below the the threshold then we can conclude we were not receiving a signal. 
+
+Here is a picture of the phototransistor and amplifier circuit. This circuit was placed on the top of the robot. The orange wire is the amplified output signal sent to the mux.
 
 
