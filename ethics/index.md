@@ -7,7 +7,7 @@
 **Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?**
 
 
-<img src="{{ site.baseurl }}/images/ethic_1.png" alt="Circuit Setup" width="500" class="center">
+<img src="{{ site.baseurl }}/images/ethic_1.png" alt="Ethics1" class="center">
 
 
 To answer this, one of our team members drew a cartoon which compares the potential future with autonomous weapons to the present. The two different scenarios show how scary the future could be if weapons are “given” intelligence.  
@@ -25,4 +25,4 @@ Further evaluation leads us to believe that this system will not inhibit any dev
 In conclusion, we believe that *“a ban on offensive autonomous weapons beyond meaningful human control”* is necessary. We end the discussion with another cartoon. Hail robotics!
 
 
-<img src="{{ site.baseurl }}/images/ethic_2.png" alt="Circuit Setup" width="500" class="center">
+<img src="{{ site.baseurl }}/images/ethic_2.png" alt="Ethics2" class="center">
