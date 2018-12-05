@@ -2,7 +2,6 @@
 
 <h1> Ethics Assignment </h1>  
 <br>
-<br>
 #### Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?
 
 
