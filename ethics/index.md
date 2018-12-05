@@ -1,6 +1,6 @@
 
 
--># Ethics Assignment<-
+#<p align="right"> Ethics Assignment </p>
 #### Jackson Kopitz, Rami Pellumbi, Jonathan Cruz, Gururaj Bhupal  
  
 
