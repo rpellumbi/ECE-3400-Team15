@@ -1,13 +1,13 @@
 
 
-<div style="text-align:center><h1> Ethics Assignment </h1></div>
+<h1> Ethics Assignment </h1>
 #### Jackson Kopitz, Rami Pellumbi, Jonathan Cruz, Gururaj Bhupal  
  
 
-<p align="center"><h4>Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?</h4></p>
+Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?
 
 
-<div style="text-align:center><img src="{{ site.baseurl }}/images/ethic_1.png" alt="Circuit Setup" width="500" align="middle"></div>
+<img src="{{ site.baseurl }}/images/ethic_1.png" alt="Circuit Setup" width="500" align="middle">
 
 
 
