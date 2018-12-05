@@ -6,33 +6,37 @@ The Final Robot design had the below main feature
 - Frequency analysis : For audio and collision avoidance 
 - Modified DFT with path planning : for maze traversal.
 
+
+
 ## Radio Communication 
 
-In order to get the Arduinos to communicate wirelessly using the RF chips, we studied and experimented with the GettingStarted.ino file given in Lab 3 to find out which parts were necessary to transmit and receive information and which parts were extraneous to our objective for the competition. The configuration settings in our code were drawn heavily from the given configuration settings, with the only changes being an increased power (max) and data rate (2MBPS) and a decreased payload size for more reliability (8 bytes). Since the robot was always sending information and the base station was always receiving it, we found the role switching capabilities of the original code to be unnecessary. Both pipes for reading and writing were set from the beginning and we found no need for the base station to send information for the robot to receive beyond an acknowledgment of a successfully received message. As a result, the final RF code used for this lab was significantly cut down in length while still remaining functional.
-The protocol for communication between the base and robot was based on a two byte integer named data on the robot that is updated, sent to the base, and then cleared at every intersection. Whenever the robot hits an intersection, based on its current heading, it updates its position and scans the walls around it. The appropriate bits are set in data and then data is sent to the base. We also update and send data after seeing a robot. After it is sent, data is reset to 0x0000 to ensure information for future transmissions does not contain pieces of previous transmissions.
-The encoding for data is as follows:
-Nibble 1 
-[0:3] - Robot x co-ordinate (Range is 0-8 since its a 9*9 matrix) 
-
-Nibble 2 
-[4:7] - Robot y co-ordinate (Range is 0-8 since its a 9*9 matrix) 
-
-Nibble 3
-[8] - West Wall ( 0 - no wall ; 1 - wall exists ) 
-[9] - North Wall ( 0 - no wall ; 1 - wall exists ) 
-[10] - East Wall ( 0 - no wall ; 1 - wall exists ) 
-[11] - South Wall ( 0 - no wall ; 1 - wall exists )
-
-Nibble 4
-[12-14] - Treasure Type  ( Predetermined treasure type codes as below) 
-No Treasure = 0;
-Blue Triangle = 1; 	Blue Square = 2;	 Blue Diamond = 3;
-Red Triangle = 4; 	Red Square = 5; 	 Red Diamond = 6;
+In order to get the Robot to communicate to base station wirelessly, we used 2 Nordic RF chips. We synchronized them using a common channel. We used the RF24 Arduino library for setup. The configuration settings in the RF code were drawn from the given configuration settings, though we made made few changes, increased power (max) and data rate (2MBPS) and a decreased payload size for more reliability (8 bytes). Since the robot was always sending information and the base station was always receiving it, we found the role switching capabilities of the original code to be unnecessary. Both pipes for reading and writing were set from the beginning and we found no need for the base station to send information for the robot to receive beyond an acknowledgment of a successfully received message. As a result, the final RF code used for this lab was significantly cut down in length while still remaining functional.  
+<br>
+The protocol for communication between the base and robot was based on a two byte integer named *data* on the robot that is updated, sent to the base, and then cleared at every intersection. Whenever the robot hits an intersection, based on its current heading, it updates its position and scans the walls around it. The appropriate bits are set in data and then data is sent to the base. We also update and send data after seeing a robot. After it is sent, data is reset to 0x0000 to ensure information for future transmissions does not contain pieces of previous transmissions.
+The encoding for data is as follows:  
+Nibble 1  
+[0:3] - Robot x co-ordinate (Range is 0-8 since its a 9*9 matrix)  
+<br>
+Nibble 2  
+[4:7] - Robot y co-ordinate (Range is 0-8 since its a 9*9 matrix)  
+<br>
+Nibble 3  
+[8] - West Wall ( 0 - no wall ; 1 - wall exists )  
+[9] - North Wall ( 0 - no wall ; 1 - wall exists )  
+[10] - East Wall ( 0 - no wall ; 1 - wall exists )  
+[11] - South Wall ( 0 - no wall ; 1 - wall exists )  
+<br>  
+Nibble 4  
+[12-14] - Treasure Type  ( Predetermined treasure type codes as below)  
+No Treasure = 0;  
+Blue Triangle = 1; 	Blue Square = 2;	 Blue Diamond = 3;  
+Red Triangle = 4; 	 Red Square = 5; 	  Red Diamond = 6;  
 [15] - Opponent Robot ( 0 - no Robot exists ; 1 - Robot obstructing path ) 
+ 
+<br>
 
+Once the robot sends the base station a message with all of the information encoded in the format described above, the base station decodes the message with the use of bit masking and bit shifting in order to extract information from specific bits. The base station iterates over the bits of the message and prints (without newlines) the information contained within them. For example, if our robot detects another robot, bit 15 will be set to 1 and the base station will print “,robot=true”. Once the message has been fully parsed and interpreted, it prints a new line so that the GUI will receive the information and update accordingly.  
 
-
-Once the robot sends the base station a message with all of the information encoded in the format described above, the base station decodes the message with the use of masking and bit shifting in order to extract information from specific bits. The base station iterates over the bits of the message and prints (without newlines) the information contained within them. For example, if our robot detects another robot, bit 15 will be set to 1 and the base station will print “,robot=true”. Once the message has been fully parsed and interpreted, it prints a new line so that the GUI will receive the information and update accordingly.
 ## Printed Circuit Board 
 
 As encouraged by the course staff, we decided to make a printed circuit board (PCB) to both clean up our wiring for our final robot and to remove the problem of wires falling out that is inherent when using a breadboard. The idea for the PCB is that the PCB would sit like a 'hat' on the Arduino and have headers for all sensors and other inputs. We used EAGLE PCB Design Software to design the PCB. 
