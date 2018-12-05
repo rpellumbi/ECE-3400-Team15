@@ -10,27 +10,18 @@
 <img src="{{ site.baseurl }}/images/ethic_1.png" alt="Circuit Setup" width="500" class="center">
 
 
-
-To introduce more context, one of our team members drew a funny cartoon which compares 2 different scenarios showing the current situation and also how scary the future can look like if weapons are “given” intelligence. 
-The realm of Robotics and Automation was introduced to ease the work of a human across all disciplines. We now have autonomous systems from teaching to defense to ease various applications saving time and energy for all. 
-Autonomous systems perform under a certain set of rules which are programmed into it. A lot of people argue that humans also work in the same way but they are at acting on exceptions that occur, that makes human a human and robot a robot. 
+To answer this, one of our team members drew a cartoon which compares the potential future with autonomous weapons to the present. The two different scenarios show how scary the future could be if weapons are “given” intelligence. The realm of Robotics and Automation was introduced to ease the work of humans across all disciplines. Autonomous systems in all fields ease repetitive and tiring work that a human would otherwise have to do.  
 <br>
-Yes, “a ban on offensive autonomous weapons beyond meaningful human control” will work if it is regulated by a well-defined set of global laws. 
-Let's consider Pros and Cons of having Autonomous Weapons.  
-<br> 
-**Pro**  
-If you are a country using Autonomous Weapons then you will face lesser human loss in defense since you can involve less of humans for the warfare.  
+Focusing our view on autonomous weapons, we think that a ban on offensive autonomous weapons beyond meaningful human control would work if defined by a well-defined set of global laws. However, whether it would be worth it or not is another discussion.  
 <br>
-**Con**  
-If you are the country on which an Autonomous Weapon is fired, they can face: (i) a huge army loss; (ii) a whole country or a huge part of the country can be sabotaged.  
-Based on the Pros and Cons, we see that the scale of destruction that the ‘con’ causes are really huge over the advantage the ‘pro’ gives.  
-So, one reason this might work because no country would want to take a chance to sabotage the people of their country on an assumption that another country cannot come up with a robust technology for warfare using automation.  
+Pro
+If you are a country using Autonomous Weapons, then you will face lesser human loss in warfare since you eliminate the need for humans on the battlefield.  
 <br>
-Implementing this thing is practice is really difficult since it needs to be dealt across countries. But like the current scenario, all the inter-country relations are handled by the United Nations. Similarly, this law also can be regulated by the United Nations. The stakeholders involves the Army division of all the counties. Also, new scientific discoveries must also be regulated by the United Nations whether such weaponry is allowed to be used are not. Thus, creating war scenarios similar to age-old battles where both sides had to follow preset war rules for any battles.  
+Cons
+Once one country develops autonomous warfare, the poorer countries are “doomed”. It creates a hierarchy structure which won’t be feasible. We would either need to regulate “battlefield rules” or ban the use of the technology we just created.  
 <br>
-This system will not inhibit any development and research in IPS since regulations are only applied on defense systems, while IPS is used in many other scenarios than just defense. 
-
-We finally believe that **“a ban on offensive autonomous weapons beyond meaningful human control”** is necessary. Ending the discussion with a funny cartoon. Hail robotics!
+Further evaluation leads us to believe that this system will not inhibit any development and research in IPS since regulations are only applied on defense systems. Intelligent Physical Systems are used and will be used in every field in the industry.
+In conclusion, we believe that “a ban on offensive autonomous weapons beyond meaningful human control” is necessary. We end the discussion with another cartoon. Hail robotics!
 
 
 <img src="{{ site.baseurl }}/images/ethic_2.png" alt="Circuit Setup" width="500" class="center">
