@@ -1,21 +1,22 @@
 
 
 <h1> Ethics Assignment </h1>
-#### Jackson Kopitz, Rami Pellumbi, Jonathan Cruz, Gururaj Bhupal  
- 
-
-**Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?**
+##### Jackson Kopitz, Rami Pellumbi, Jonathan Cruz, Gururaj Bhupal  
+<br>
+<br>
+#### Is “a ban on offensive autonomous weapons beyond meaningful human control” going to work?
 
 
 <img src="{{ site.baseurl }}/images/ethic_1.png" alt="Ethics1" class="center">
 
-
+<br>
+<br>
 To answer this, one of our team members drew a cartoon which compares the potential future with autonomous weapons to the present. The two different scenarios show how scary the future could be if weapons are “given” intelligence.  
 The realm of Robotics and Automation was introduced to ease the work of humans across all disciplines. Autonomous systems in all fields ease repetitive and tiring work that a human would otherwise have to do.  
 <br>
 Focusing our view on autonomous weapons, we think that a ban on offensive autonomous weapons beyond meaningful human control would work if defined by a well-defined set of global laws. However, whether it would be worth it or not is another discussion.  
 <br>
-*Pro*  
+**Pro**  
 If you are a country using Autonomous Weapons, then you will face lesser human loss in warfare since you eliminate the need for humans on the battlefield.  
 <br>
 **Cons**  
