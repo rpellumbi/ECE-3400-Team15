@@ -333,5 +333,5 @@ Here are some photos of Zippie posing in different angles.
 
 
 ### Conclusion  
-We decided to reassemble our robot the night before and pretty much set ourselves up for hard day. We highly recommend you take a look at the *Final_Competition_Final* code. It is well commented and an elegant implementation of the maze traversal.
+We decided to reassemble our robot the night before and pretty much set ourselves up for hard day. We highly recommend you take a look at the *Final_Competition_Final* code. It is well commented and an elegant implementation of the maze traversal. All codes are well commented and placed in *All Codes* folder on the Github.  
 It was a great experience for the whole team seeing Zippie growing from Blink Example to what it was in its final stage. We all learnt a lot in this process.
