@@ -167,7 +167,7 @@ Else if not at an intersection
 		Celebrate 
 ```
 The path planning algorithm was modified slightly so that we could just use path planning instead of all those conditionals you see in the milestone three algorithm  above. 
-When this worked, IT WORKED!!. We could regularly traverse a whole 9x9 with little misinformation on the GUI. Then we decided to remodel our robot the night before and pretty much set ourselves up for failure. We highly recommend you take a look at the *Final_Competition_Final* code. It is well commented and an elegant implementation of the maze traversal.
+When this worked, IT WORKED!!. We could regularly traverse a whole 9x9 with little misinformation on the GUI. 
 
 ## 5. Object detection
 
@@ -315,26 +315,23 @@ The image gives a brief overview on how it is implemented.
 
 ![Algorithm](Media/algo.png)
 
-## Robot Budget. 
+### Robot Budget. 
 
-2 servos - 13.95*2
-Cut acrylic chassis - 
-Camera  -
-FPGA - 
-Arduino Uno - 
-Line sensors - 
-Low Distance IR sensor - 
-IR LED - 
-RF module :
-Wires
-Protobord 
+Line sensors: $3 * 3 = $9  
+IR distance sensors: $7 * 3 = $21  
+Camera: $14 * 1 = $14  
+Parallax servos: $13 * 2 = $26  
+<br>
+All other basic electronics were provided free of cost. So we built Zippie with a total cost of about $70.  
 
 
 Here are some photos of Zippie posing in different angles. 
 
 
+![Algorithm](Media/zippie.png)
 
 
 
-
-  
+### Conclusion  
+We decided to reassemble our robot the night before and pretty much set ourselves up for hard day. We highly recommend you take a look at the *Final_Competition_Final* code. It is well commented and an elegant implementation of the maze traversal.
+It was a great experience for the whole team seeing Zippie growing from Blink Example to what it was in its final stage. We all learnt a lot in this process.
