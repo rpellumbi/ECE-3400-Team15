@@ -88,14 +88,14 @@ Since we wanted to analyze signals from two sources, we had to switch which bin 
 
 Here is a picture of the IR sensor and the amplifier circuit. This circuit was placed on the top of the robot. The orange wire is the amplified output signal sent to the mux.
 
-![IR Board](Media/irboard.jpg)
+![IR Board](Media/irboard.png)
 
 
 ### Modified DFS with Path Planning
 
 Our overall traversal algorithm changed from the implementation in Milestone 3. In milestone 3 we favored a depth first search approach until we hit a coordinate where we were surrounded by all visited coordinates. We still do DFS until we need to backtrack but instead of true backtracking we plan a path to the “nearest” way possible. We also had to implement robot avoidance.
-
 The algorithm from milestone 3 was  
+<br>
 **MODIFIED DFS ALGORITHM**
 ```
 If at an intersection
@@ -133,9 +133,8 @@ While path planning we prioritize moving forward first, then left, then right (d
 We realized that path planning this way sometimes yielded a path that wasn’t traversable since the robot would plan a path where it just went in a circle. This was due to us prioritizing movements in the order of front then left then right. When this happened the Queue that we used would consume too much memory and the robot would come to a complete halt. So we made the path planning with front, left, right prioritization return false if the queue was loaded with more than 20 values. If this happens we just plan a path with front, right, left prioritization and traverse that instead.  
 <br>
 Note: the robot was designed to start in front of the {0,0} intersection since it was easier to insert in the maze that way.  
-<br>
 The algorithm we settled on for the final competition now looked as follows.
-
+<br>
 **PATH PLANNING ALGORITHM** 
 ```
 If at an intersection
