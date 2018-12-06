@@ -321,10 +321,10 @@ The image gives a brief overview on how it is implemented.
 **Camera:** $14 * 1 = $14  
 **Parallax servos:** $13 * 2 = $26  
 <br>
-All other basic electronics were provided free of cost. So we built Zippie with a total cost of about $70.  
+All other basic electronics were provided free of cost. So we built Zippie with a total cost of **$70**.  
 
 <br>
-*Here are some photos of Zippie posing in different angles.* 
+**Here are some photos of Zippie posing in different angles.** 
 
 
 ![Algorithm](Media/zippie.png)
