@@ -302,11 +302,10 @@ always @ (posedge GPIO_1_D[25]) begin
 		end
 
 end
-```		
-
-
-	
+			
 endmodule 
+
+```
 
 
 ### 5.2 Shape Detection
@@ -315,17 +314,17 @@ The image gives a brief overview on how it is implemented.
 
 ![Algorithm](Media/algo.png)
 
-### Robot Budget. 
+### Robot Budget 
 
-Line sensors: $3 * 3 = $9  
-IR distance sensors: $7 * 3 = $21  
-Camera: $14 * 1 = $14  
-Parallax servos: $13 * 2 = $26  
+**Line sensors:** $3 * 3 = $9  
+**IR distance sensors:** $7 * 3 = $21  
+**Camera:** $14 * 1 = $14  
+**Parallax servos:** $13 * 2 = $26  
 <br>
 All other basic electronics were provided free of cost. So we built Zippie with a total cost of about $70.  
 
-
-Here are some photos of Zippie posing in different angles. 
+<br>
+*Here are some photos of Zippie posing in different angles.* 
 
 
 ![Algorithm](Media/zippie.png)
