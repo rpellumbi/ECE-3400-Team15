@@ -176,17 +176,148 @@ OV7670 camera was interfaced with an FPGA for image processing.
 ### 5.1 Color Detection. 
 The color detection was based on the scheme of collection of raw RGB data and compare them to the pre-tuned threshold determined in the lab. An OV7670 has 3 data schemes ,RGB444, RGB555 and RGB565. For maximizing data input and for ease of implementation, we chose to use RGB565.The camera gave the data over 2 cycles and to collect and store it, we had to implement a downsampler to change RGB-555 to 1 byte to process data better. We implemented a green filter which did not allow green light. We used the 4 bits each of red and blue which we compared to a threshold that was tuned by multiple iterations. Based on which color had a maximum color average, we could differentiate between a blue and a red color. Below is a code snippet for color detection. 
 
-***Color detection code ***
+```
+
+//=======================================================
+//  PARAMETER declarations
+//=======================================================
+
+
+reg [1:0] RESULTIN;
+reg [15:0] countBlue;
+reg [15:0] countRed;
+reg [15:0] red_threshold = 16'd10000;
+reg [15:0] blue_threshold = 16'd10000;
+
+
+//=======================================================
+//  PORT declarations
+//=======================================================
+
+//////////// CLOCK //////////
+input 		          		CLOCK_50;
+
+//////////// GPIO_0, GPIO_0 connect to GPIO Default //////////
+output 		    [33:0]		GPIO_0_D;
+//////////// GPIO_0, GPIO_1 connect to GPIO Default //////////
+//input 		    [33:20]		GPIO_1_D;
+input 		    [33:0]		GPIO_1_D;
+input 		     [1:0]		KEY;
+
+///// PIXEL DATA /////
+reg [7:0]	pixel_data_RGB332 = 8'd0;
+
+///// READ/WRITE ADDRESS /////
+reg [14:0] X_ADDR;
+reg [14:0] Y_ADDR;
+wire [14:0] WRITE_ADDRESS;
+reg [14:0] READ_ADDRESS; 
+
+assign WRITE_ADDRESS = X_ADDR + Y_ADDR*(`SCREEN_WIDTH);
+
+///// VGA INPUTS/OUTPUTS /////
+wire 			VGA_RESET;
+wire [7:0]	VGA_COLOR_IN;
+wire [9:0]	VGA_PIXEL_X;
+wire [9:0]	VGA_PIXEL_Y;
+wire [7:0]	MEM_OUTPUT;
+wire			VGA_VSYNC_NEG;
+wire			VGA_HSYNC_NEG;
+reg			VGA_READ_MEM_EN;
+
+
+
+reg whichbyte = 1'b0;
+reg is_href = 1'b0;
+always @ (posedge GPIO_1_D[25]) begin
+		if (GPIO_1_D[27]) begin
+			is_href <= 1'b0;
+			if (~whichbyte) begin
+				// write 0 1 2 5 6 7
+				pixel_data_RGB332[7] <= GPIO_1_D[23];
+				pixel_data_RGB332[6] <= GPIO_1_D[21];
+				pixel_data_RGB332[5] <= GPIO_1_D[19];
+				pixel_data_RGB332[4] <= GPIO_1_D[17];
+				pixel_data_RGB332[4] <= 1'b0;
+				
+		   // countRed = countRed + pixel_data_RGB332[7:4];
+				
+				W_EN <= 1'b0;
+				X_ADDR <= X_ADDR;
+			end 
+			else begin
+				// write 3 4
+				pixel_data_RGB332[0] <= GPIO_1_D[15];
+				pixel_data_RGB332[3] <= GPIO_1_D[17];
+				pixel_data_RGB332[2] <= GPIO_1_D[15];
+				pixel_data_RGB332[1] <= GPIO_1_D[13];
+				pixel_data_RGB332[0] <= GPIO_1_D[11];
+				
+				pixel_data_RGB332[0] <= 1'b1;
+				X_ADDR <= X_ADDR + 15'b1;
+				
+				
+				if (pixel_data_RGB332[7:4] > pixel_data_RGB332[3:0]) begin
+				countRed  = countRed +  16'd1;
+				end 
+				else begin
+				countBlue = countBlue + 16'd1;
+				end 
+				
+
+				
+				W_EN <= 1'b1;
+			end
+			whichbyte = ~whichbyte;
+		end 
+		else begin
+			if (~is_href) begin
+				Y_ADDR <= Y_ADDR + 15'b1;
+				X_ADDR <= 15'b0;
+				is_href <= 1'b1;
+			end
+		end
+		if (GPIO_1_D[29]) begin
+		
+	      		if (countRed > red_threshold) begin
+			RESULTIN <= 2'b01;
+			end
+			
+			else if (countBlue > blue_threshold) begin
+			RESULTIN <= 2'b10;
+			end
+			
+			else begin
+			RESULTIN <= 2'b00;
+			end
+			
+			Y_ADDR <= 15'b0;
+			X_ADDR <= 15'b0;
+		end
+		
+		if (VGA_VSYNC_NEG == 1'b0) begin
+		countRed  = 16'd0;
+		countBlue = 16'd0;
+		RESULTIN <= 2'b00;
+		end
+
+end
+```		
+
+
+	
+endmodule 
+
 
 ### 5.2 Shape Detection
 This was one of the most difficult challenge we have faced in the entire lab, but was quite interested to work on. We had 3 target shapes to identify, i.e, diamond, square and triangle. On closer observation if they are generally of the same scale, we can use an algorithm The algorithm we used samples 3 pre-determined horizontal lines in a frame and to hand relatively compare the lengths of these three lines and decide the shape. 
 The image gives a brief overview on how it is implemented. 
 
-**pic of shape detection***
+![Algorithm](Media/algo.png)
 
-Robot Budget. 
+## Robot Budget. 
 
-2 servos - 
+2 servos - 13.95*2
 Cut acrylic chassis - 
 Camera  -
 FPGA - 
@@ -199,7 +330,6 @@ Wires
 Protobord 
 
 
-Photoshoot
 Here are some photos of Zippie posing in different angles. 
 
 
