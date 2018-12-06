@@ -70,7 +70,7 @@ On the top right you can see the 8 pins that connect right into the Arduino. 3 o
 
 The rest of the protoboards were very similar but with the required pins for the given Arduino headers and inputs. There were additional protoboards made for the push button, microphone, IR sensor and amplifier, Arduino analog pins 0 through 5, and radio module.
 
-## Frequency Aalysis
+## Frequency Analysis
 
 On our final robot, we had a microphone to detect 660 Hz audio sound to signal the robot to start, and an IR sensor to detect other robots emitting IR at 6.08kHz. We processed the signals using the Arduino FFT Library. Also, we designed 2 amplifier circuitry to clearly detect the signals from a farther distance. 
 
@@ -84,7 +84,7 @@ The same amplifier was used for the IR circuit. Below is the phototransistor cir
 
 **pic of ir **  
 
-Since we wanted to analyze signals from two sources, we had to switch which bin we were reading data from on the arduino each time we ran the FFT. Both the audio and IR came from the mux output, so we needed to select the bin to read from. If we were in the initial spinlock, a global variable was set to read from the audio bin. Once we left this spinlock, the global variable indicated to read from the IR bin since after the initial tone, the robot never needs to listen to the audio signal. To determine if we are receiving an audio or IR signal, we checked which pin we were reading from, then the corresponding bin for that signal, and if the value was above the threshold, then we were receiving a signal. Similarly, if the value was below the the threshold then we can conclude we were not receiving a signal. 
+Since we wanted to analyze signals from two sources, we had to switch which bin we were reading data from on the Arduino each time we ran the FFT. Both the audio and IR came from the mux output, so we needed to select the bin to read from. If we were in the initial spinlock, a global variable was set to read from the audio bin. Once we left this spinlock, the global variable indicated to read from the IR bin since after the initial tone, the robot never needs to listen to the audio signal. To determine if we are receiving an audio or IR signal, we checked which pin we were reading from, then the corresponding bin for that signal, and if the value was above the threshold, then we were receiving a signal. Similarly, if the value was below the the threshold then we can conclude we were not receiving a signal. 
 
 Here is a picture of the IR sensor and the amplifier circuit. This circuit was placed on the top of the robot. The orange wire is the amplified output signal sent to the mux.
 
