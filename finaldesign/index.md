@@ -76,24 +76,26 @@ On our final robot, we had a microphone to detect 660 Hz audio sound to signal t
 
 To process our signals, we used the Arduino FFT library. We used the free running mode and the example code from fft_adc_serial. We first had to determine which bins we expect our signal to be in. We chose a sampling frequency of 38kHz and sampled 256 times. Thus, 38kHz / 256 samples = 148.4 Hz per bin in our FFT. From here, we were able to determine that the 660 Hz audio signal would be in the 5th bin and the 6.08 kHz IR signal would be in the 43 bin. After experimenting to see where the signals did fall, we confirmed our calculations were correct.
 
-Since, during the competition we would need to identify both audio and IR coming from about a foot away, we added two amplifiers to amplify both the audio and IR signals. Here is the schematic of the amplifier with the microphone:
+Since, during the competition we would need to identify both audio and IR coming from about a foot away, we added two amplifiers to amplify both the audio and IR signals. Here is the schematic of the amplifier with the microphone:  
+
 ***pic of mic ***
 
-The same amplifier was used for the IR circuit. Below is the phototransistor circuit with Vout being the input to the amplifier.
+The same amplifier was used for the IR circuit. Below is the phototransistor circuit with Vout being the input to the amplifier.  
 
-**pic of ir **
+**pic of ir **  
+
 Since we wanted to analyze signals from two sources, we had to switch which bin we were reading data from on the arduino each time we ran the FFT. Both the audio and IR came from the mux output, so we needed to select the bin to read from. If we were in the initial spinlock, a global variable was set to read from the audio bin. Once we left this spinlock, the global variable indicated to read from the IR bin since after the initial tone, the robot never needs to listen to the audio signal. To determine if we are receiving an audio or IR signal, we checked which pin we were reading from, then the corresponding bin for that signal, and if the value was above the threshold, then we were receiving a signal. Similarly, if the value was below the the threshold then we can conclude we were not receiving a signal. 
 
 Here is a picture of the IR sensor and the amplifier circuit. This circuit was placed on the top of the robot. The orange wire is the amplified output signal sent to the mux.
 
-![IR Board](Media/IRboard.jpg)
+![IR Board](Media/irboard.jpg)
 
 
 ### Modified DFS with Path Planning
 
 Our overall traversal algorithm changed from the implementation in Milestone 3. In milestone 3 we favored a depth first search approach until we hit a coordinate where we were surrounded by all visited coordinates. We still do DFS until we need to backtrack but instead of true backtracking we plan a path to the “nearest” way possible. We also had to implement robot avoidance.
 
-The algorithm from milestone 3 was
+The algorithm from milestone 3 was  
 **MODIFIED DFS ALGORITHM**
 ```
 If at an intersection
