@@ -2,10 +2,10 @@
 
 The Final Robot design had the below main features.
 <br>  
-**1. Radio Communication : For transmitting maze data to base station.**
-**2. Overall Design Aesthetics : For better Stability.**
-**3. Frequency analysis : For audio and collision avoidance.** 
-**4. Modified DFT with path planning : for maze traversal.**
+**1. Radio Communication : For transmitting maze data to base station.**  
+**2. Overall Design Aesthetics : For better Stability.**  
+**3. Frequency analysis : For audio and collision avoidance.**  
+**4. Modified DFT with path planning : for maze traversal.**  
 **5. Object detection : For detecting colors and shape of objects.** 
 
 
